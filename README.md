@@ -107,10 +107,10 @@ Responsável por:
 
 ### 👨‍💼 ADM
 
-- [ ] Cadastrar operador 
-- [ ] Visualizar operador 
+- [x] Cadastrar operador 
+- [x] Visualizar operador 
 - [ ] Editar operador  
-- [ ] Remover operador  
+- [x] Remover operador  
 - [ ] Criar nota fiscal  
 - [ ] Atribuir operador  
 - [ ] Reatribuir operador manualmente  
@@ -145,7 +145,7 @@ Responsável por:
 > Cada item marcado representa uma funcionalidade implementada e versionada no projeto.
 
 ### 📌 Versão 0.1.0
-- [ ] Estrutura inicial do projeto
+- [x] Estrutura inicial do projeto
 
 ### 📌 Versão 0.2.0
 - [ ] CRUD de operadores
