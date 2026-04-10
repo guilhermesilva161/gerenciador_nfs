@@ -148,7 +148,7 @@ Responsável por:
 - [x] Estrutura inicial do projeto
 
 ### 📌 Versão 0.2.0
-- [ ] CRUD de operadores
+- [X] CRUD de operadores
 
 ### 📌 Versão 0.3.0
 - [ ] Cadastro de notas fiscais
