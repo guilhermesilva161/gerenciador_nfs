@@ -109,9 +109,9 @@ Responsável por:
 
 - [x] Cadastrar operador 
 - [x] Visualizar operador 
-- [ ] Editar operador  
+- [x] Editar operador  
 - [x] Remover operador  
-- [ ] Criar nota fiscal  
+- [x] Criar nota fiscal  
 - [ ] Atribuir operador  
 - [ ] Reatribuir operador manualmente  
 - [ ] Visualizar status das notas  
@@ -124,7 +124,7 @@ Responsável por:
 
 - [ ] Visualizar notas atribuídas  
 - [ ] Iniciar preenchimento  
-- [ ] Atualizar dados da nota  
+- [x] Atualizar dados da nota  
 - [ ] Marcar entrega como total/parcial  
 - [ ] Informar motivo de parcialidade  
 - [ ] Finalizar nota  
@@ -151,7 +151,7 @@ Responsável por:
 - [X] CRUD de operadores
 
 ### 📌 Versão 0.3.0
-- [ ] Cadastro de notas fiscais
+- [x] Cadastro de notas fiscais
 
 ### 📌 Versão 0.4.0
 - [ ] Sistema de atribuição de operadores
