@@ -1,0 +1,42 @@
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Oper {
+  id      Int    @id @default(autoincrement())
+  name    String
+  age     Int
+  service String
+
+  // Relacionamento inverso: Uma oper pode ter várias notas fiscais
+  notas   NotaFiscal[]
+
+  @@map("opers")
+}
+
+model NotaFiscal {
+  id                 Int      @id @default(autoincrement())
+  numero             String
+  valor              Decimal  @db.Decimal(10, 2) // numeric(10,2)
+  data_recebimento   DateTime @db.Date           // date (sem hora)
+  data_inicio        DateTime? @db.Date           // date
+  material_recebido  String?
+  status_entrega     String?
+  motivo_parcialidade String?
+  status             String
+  data_conclusao     DateTime? @db.Date           // date
+  createdAt          DateTime @default(now())    @map("created_at")
+  updatedAt          DateTime @updatedAt         @map("updated_at")
+
+  // Foreign Key
+  oper_atual_id      Int
+  oper_atual         Oper     @relation(fields: [oper_atual_id], references: [id])
+
+  @@map("notas_fiscais")
+}

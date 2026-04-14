@@ -1,7 +1,7 @@
 import { Router } from "express";
 import * as operController from "./controllers/operController"
 import * as notasController from "./controllers/notasController"
-
+const a: string = "Bem bindo"
 const router = Router();
     router.post("/opers",operController.insertOper);
     router.put("/opers/:id",operController.updateOper)
