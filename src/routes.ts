@@ -1,7 +1,9 @@
 import { Router } from "express";
 import * as operController from "./controllers/operController"
 import * as notasController from "./controllers/notasController"
-const a: string = "Bem bindo"
+import * as userController from "./controllers/userControllers"
+import * as roleController from "./controllers/roleControtller"
+
 const router = Router();
     router.post("/opers",operController.insertOper);
     router.put("/opers/:id",operController.updateOper)
@@ -14,6 +16,12 @@ const router = Router();
     router.get("/notas/:id", notasController.getNotaById);
     router.post("/notas/", notasController.insertNota);
     router.delete("/notas/:id", notasController.deleteNotaById);
+
+    router.post("/users", userController.insertUser)
+    router.get("/users", userController.getUser);
+
+    router.get("/roles", roleController.getRole);
+    router.post("/roles", roleController.insertRole)
 
 
 export default router;

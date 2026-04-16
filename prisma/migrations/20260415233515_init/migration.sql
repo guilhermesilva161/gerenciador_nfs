@@ -9,6 +9,25 @@ CREATE TABLE "opers" (
 );
 
 -- CreateTable
+CREATE TABLE "users" (
+    "id" SERIAL NOT NULL,
+    "username" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "roleId" INTEGER NOT NULL,
+    "operId" INTEGER,
+
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "roles" (
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+
+    CONSTRAINT "roles_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "notas_fiscais" (
     "id" SERIAL NOT NULL,
     "numero" TEXT NOT NULL,
@@ -26,6 +45,21 @@ CREATE TABLE "notas_fiscais" (
 
     CONSTRAINT "notas_fiscais_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_username_key" ON "users"("username");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_operId_key" ON "users"("operId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "roles_name_key" ON "roles"("name");
+
+-- AddForeignKey
+ALTER TABLE "users" ADD CONSTRAINT "users_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "roles"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "users" ADD CONSTRAINT "users_operId_fkey" FOREIGN KEY ("operId") REFERENCES "opers"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "notas_fiscais" ADD CONSTRAINT "notas_fiscais_oper_atual_id_fkey" FOREIGN KEY ("oper_atual_id") REFERENCES "opers"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

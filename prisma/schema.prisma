@@ -14,10 +14,33 @@ model Oper {
   age     Int
   service String
 
-  // Relacionamento inverso: Uma oper pode ter várias notas fiscais
   notas   NotaFiscal[]
+  user    User?
 
   @@map("opers")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
+
+  roleId   Int
+  role     Role   @relation(fields: [roleId], references: [id])
+
+  operId   Int? @unique
+  oper     Oper?  @relation(fields: [operId], references: [id])
+
+  @@map("users")
+}
+
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+
+  users User[]
+
+  @@map("roles")
 }
 
 model NotaFiscal {

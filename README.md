@@ -181,7 +181,7 @@ Responsável por:
 - [ ] Backend: Node.js e Typescript
 - [ ] Frontend: React
 - [ ] Banco de Dados: Postgres
-- [ ] ORM:(não definida ainda)
+- [ ] ORM: Prisma
 - [ ] Autenticação:(não definida ainda)
 
 ---

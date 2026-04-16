@@ -1,19 +1,22 @@
 {
   "name": "gerenciador_nfs",
-  "version": "0.2.0",
+  "version": "0.3.1",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "dist": "tsup src",
     "start:dev": "tsx --env-file=.env src/server.ts",
     "start:watch": "tsx watch --env-file=.env src/server.ts",
-    "start:dist": "npm run dist && node dist/src/index.js"
+    "start:dist": "npm run dist && node dist/src/index.js",
+    "postinstall": "prisma generate",
+    "db:migrate": "prisma migrate dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
     "@types/node": "^25.6.0",
     "@types/pg": "^8.20.0",
@@ -25,6 +28,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.7.0",
     "@prisma/client": "^7.7.0",
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "pg": "^8.20.0"
