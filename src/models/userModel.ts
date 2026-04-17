@@ -1,4 +1,4 @@
-export interface userModel{
+export interface CreateUserDTO{
     username:string;
     password:string;
     roleId:number; 

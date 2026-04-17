@@ -1,8 +1,10 @@
 import * as httpCode from "../utils/http-codes"
 import * as operRepository from "../repository/operRepository"
-import { operModel } from "../models/operModel";
+import { CreateOperDTO } from "../models/operModel";
+import { Oper } from "../../generated/prisma/client";
 
-export const insertOperService = async(oper:operModel) =>{
+
+export const insertOperService = async(oper:CreateOperDTO) =>{
     const data = await operRepository.insertOper(oper);
     let response = null;
 
@@ -15,7 +17,7 @@ export const insertOperService = async(oper:operModel) =>{
     return response;
 }
 
-export const updateOperService = async (id:number, oper:operModel) =>{
+export const updateOperService = async (id:number, oper:Oper) =>{
     const data = await operRepository.updateOper(id,oper);
     let response = null;
 

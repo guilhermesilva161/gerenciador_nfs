@@ -1,7 +1,8 @@
 import { prisma } from "../lib/prisma";
-import { roleModel } from "../models/roleModel";
+import { CreateRoleDTO } from "../models/roleModel";
+import { Role } from "../../generated/prisma/client";
 
-export const insertRole = async (role:roleModel): Promise <roleModel> => {
+export const insertRole = async (role:CreateRoleDTO): Promise <Role> => {
     return await prisma.role.create({
       data: {
       name: role.name
@@ -9,7 +10,7 @@ export const insertRole = async (role:roleModel): Promise <roleModel> => {
   })
 };
 
-export const updateRole = async (id: number, role: roleModel): Promise<roleModel> => {
+export const updateRole = async (id: number, role: Role): Promise<Role> => {
   return await prisma.role.update({
     where: { id },
     data: {
@@ -18,17 +19,17 @@ export const updateRole = async (id: number, role: roleModel): Promise<roleModel
   });
 };
 
-export const findAllRole = async (): Promise <roleModel[]> => {
+export const findAllRole = async (): Promise <Role[]> => {
     return await prisma.role.findMany();
 };
 
-export const findRoleById = async (id: number): Promise<roleModel | null> => {
+export const findRoleById = async (id: number): Promise<Role | null> => {
   return await prisma.role.findUnique({
     where: { id }
   });
 };
 
-export const deleteRoleById = async (id: number): Promise<roleModel> => {
+export const deleteRoleById = async (id: number): Promise<Role> => {
   return await prisma.role.delete({
     where: { id }
   });

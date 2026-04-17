@@ -1,9 +1,9 @@
 import * as httpCode from "../utils/http-codes"
 import * as userRepository from "../repository/userRepository"
-import { userModel } from "../models/userModel";
+import { CreateUserDTO } from "../models/userModel";
 import bcrypt from "bcrypt";
 
-export const insertUserService = async (user: userModel) => {
+export const insertUserService = async (user: CreateUserDTO) => {
   const userExists = await userRepository.findUserByUsername(user.username);
 
   if (userExists) {

@@ -1,8 +1,8 @@
 import * as roleRepository from "../repository/roleRepository"
 import * as httpCode  from "../utils/http-codes"
-import { roleModel } from "../models/roleModel"
+import { CreateRoleDTO } from "../models/roleModel"
 
-export const insertRoleService = async (role:roleModel)=>{
+export const insertRoleService = async (role:CreateRoleDTO)=>{
     const data = await roleRepository.insertRole(role);
     let response = null;
 

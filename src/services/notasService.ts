@@ -1,8 +1,9 @@
 import * as httpCode  from "../utils/http-codes";
 import * as notasRepository from "../repository/notasRepository"
-import { notasModel } from "../models/notasModel";
+import { NotaFiscal } from "../../generated/prisma/client";
+import { CreateNotasDTO } from "../models/notasModel";
 
-export const insertNotaService = async(nota:notasModel) =>{
+export const insertNotaService = async(nota:CreateNotasDTO) =>{
     const data = await notasRepository.insertNota(nota);
     let response = null;
 
@@ -15,7 +16,7 @@ export const insertNotaService = async(nota:notasModel) =>{
     return response;
 }
 
-export const updateNotaService = async (id:number, nota:notasModel) =>{
+export const updateNotaService = async (id:number, nota:NotaFiscal) =>{
     const data = await notasRepository.updateNota(id,nota);
     let response = null;
 

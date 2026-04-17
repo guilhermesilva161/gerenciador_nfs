@@ -1,7 +1,8 @@
 import { prisma } from "../lib/prisma";
-import {userModel} from "../models/userModel";
+import {CreateUserDTO} from "../models/userModel";
+import { User } from "../../generated/prisma/client";
 
-export const insertUser =async (user:userModel): Promise <userModel> => {
+export const insertUser =async (user:CreateUserDTO): Promise <User> => {
     return await prisma.user.create({
         data:{
             username:user.username,
@@ -19,7 +20,7 @@ export const findUserByUsername = async (username: string) => {
   });
 };
 
-export const updateUser =async (id:number, user:userModel): Promise <userModel> => {
+export const updateUser =async (id:number, user:User): Promise <User> => {
     return await prisma.user.update({
         where:{id},
         data:{
@@ -31,17 +32,17 @@ export const updateUser =async (id:number, user:userModel): Promise <userModel> 
     })
 }
 
-export const findAllUser = async (): Promise <userModel[]>=>{
+export const findAllUser = async (): Promise <User[]>=>{
     return await prisma.user.findMany()
 }
 
-export const findUserById =async (id:number): Promise <userModel | null>  => {
+export const findUserById =async (id:number): Promise <User | null>  => {
     return await prisma.user.findUnique({
         where:{id}
     })
 }
 
-export const deleteUserById =async (id:number): Promise <userModel | null>  => {
+export const deleteUserById =async (id:number): Promise <User | null>  => {
     return await prisma.user.delete({
         where:{id}
     })
