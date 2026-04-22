@@ -1,7 +1,6 @@
 import * as httpCode  from "../utils/http-codes";
 import * as notasRepository from "../repository/notasRepository"
-import { NotaFiscal } from "../../generated/prisma/client";
-import { CreateNotasDTO } from "../models/notasModel";
+import { CreateNotasDTO, UpdateNotasAdmDTO, UpdateNotasOperDTO } from "../models/notasModel";
 
 export const insertNotaService = async(nota:CreateNotasDTO) =>{
     const data = await notasRepository.insertNota(nota);
@@ -16,8 +15,21 @@ export const insertNotaService = async(nota:CreateNotasDTO) =>{
     return response;
 }
 
-export const updateNotaService = async (id:number, nota:NotaFiscal) =>{
-    const data = await notasRepository.updateNota(id,nota);
+export const updateNotaAdmService = async (id:number, nota:UpdateNotasAdmDTO) =>{
+    const data = await notasRepository.updateNotaAdmById(id,nota);
+    let response = null;
+
+    if(data){
+        response = await httpCode.ok(data);
+
+    }else{
+        response = await httpCode.noContent();
+    }
+    return response;
+}
+
+export const updateNotaOperService = async (id:number, nota:UpdateNotasOperDTO) =>{
+    const data = await notasRepository.updateNotaOperById(id,nota);
     let response = null;
 
     if(data){

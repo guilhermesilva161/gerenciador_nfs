@@ -8,7 +8,7 @@ export const insertOper = async (oper: CreateOperDTO): Promise<Oper> => {
   });
 };
 
-export const updateOper = async (id: number, oper: Oper): Promise<Oper> => {
+export const updateOper = async (id: number, oper:CreateOperDTO): Promise<Oper> => {
   return await prisma.oper.update({
     where: { id },
     data: {

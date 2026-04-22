@@ -7,10 +7,16 @@ export const insertNota = async (req: Request, res: Response) =>{
     res.status(httpCode.statusCode).json(httpCode.body);
 }
 
-export const updateNota = async(req: Request, res: Response,) =>{
-    const httpCode = await service.updateNotaService(Number(req.params.id),req.body);
+export const updateNotaAdm = async(req: Request, res: Response,) =>{
+    const httpCode = await service.updateNotaAdmService(Number(req.params.id),req.body);
     res.status(httpCode.statusCode).json(httpCode.body);
 }
+
+export const updateNotaOper = async(req: Request, res: Response,) =>{
+    const httpCode = await service.updateNotaOperService(Number(req.params.id),req.body);
+    res.status(httpCode.statusCode).json(httpCode.body);
+}
+
 
 export const getNotas = async (req: Request, res: Response) =>{
     const httpCode = await service.getNotasService();

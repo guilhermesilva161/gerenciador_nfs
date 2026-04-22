@@ -1,6 +1,7 @@
 import { prisma } from "../lib/prisma";
-import {CreateUserDTO} from "../models/userModel";
+import {CreateUserDTO, UpdateUserDTO} from "../models/userModel";
 import { User } from "../../generated/prisma/client";
+import { UserDTO } from "../models/loginDTO";
 
 export const insertUser =async (user:CreateUserDTO): Promise <User> => {
     return await prisma.user.create({
@@ -20,14 +21,13 @@ export const findUserByUsername = async (username: string) => {
   });
 };
 
-export const updateUser =async (id:number, user:User): Promise <User> => {
+export const updateUser =async (id:number, user:UpdateUserDTO): Promise <User> => {
     return await prisma.user.update({
         where:{id},
         data:{
             username:user.username,
             password:user.password,
             roleId:user.roleId,
-            operId:user.operId
         }
     })
 }
@@ -36,7 +36,7 @@ export const findAllUser = async (): Promise <User[]>=>{
     return await prisma.user.findMany()
 }
 
-export const findUserById =async (id:number): Promise <User | null>  => {
+export const findUserById =async (id:number): Promise <UserDTO | null>  => {
     return await prisma.user.findUnique({
         where:{id}
     })

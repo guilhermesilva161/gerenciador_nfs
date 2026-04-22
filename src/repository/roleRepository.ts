@@ -1,5 +1,5 @@
 import { prisma } from "../lib/prisma";
-import { CreateRoleDTO } from "../models/roleModel";
+import { CreateRoleDTO, UpdateRoleDTO } from "../models/roleModel";
 import { Role } from "../../generated/prisma/client";
 
 export const insertRole = async (role:CreateRoleDTO): Promise <Role> => {
@@ -10,7 +10,7 @@ export const insertRole = async (role:CreateRoleDTO): Promise <Role> => {
   })
 };
 
-export const updateRole = async (id: number, role: Role): Promise<Role> => {
+export const updateRole = async (id: number, role: UpdateRoleDTO): Promise<Role> => {
   return await prisma.role.update({
     where: { id },
     data: {

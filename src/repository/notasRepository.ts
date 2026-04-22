@@ -1,28 +1,39 @@
-import { CreateNotasDTO } from "../models/notasModel"
+import { CreateNotasDTO,UpdateNotasOperDTO,UpdateNotasAdmDTO } from "../models/notasModel"
 import { NotaFiscal } from "../../generated/prisma/client";
-import banco from "../database/database"
+import { prisma } from "../lib/prisma";
 
-export const insertNota = async (nota:CreateNotasDTO): Promise<NotaFiscal> => {
-    const result: any = await banco.query("INSERT INTO notas_fiscais (numero,valor,data_recebimento,status) VALUES ($1, $2, $3, $4) RETURNING * ", [nota.numero,nota.valor,nota.data_recebimento,nota.status]);
-    return result.rows[0];
+export const insertNota = async (nota: CreateNotasDTO): Promise <NotaFiscal> =>{
+    return await prisma.notaFiscal.create({
+      data: nota
+    });
+};
+
+export const updateNotaAdmById = async (id:number, nota:UpdateNotasAdmDTO): Promise <NotaFiscal | null> => {
+  return await prisma.notaFiscal.update({
+    where:{id},
+    data: nota
+  })
 }
 
-export const updateNota = async(id:number, nota:NotaFiscal): Promise <NotaFiscal> =>{
-  const result = await banco.query("UPDATE notas_fiscais SET numero = $1, valor = $2, data_recebimento = $3, status = $4 WHERE id = $5 RETURNING *", [nota.numero,nota.valor,nota.data_recebimento,nota.status,id])
-  return result.rows[0];
+export const updateNotaOperById = async (id:number, nota:UpdateNotasOperDTO): Promise <NotaFiscal | null> => {
+  return await prisma.notaFiscal.update({
+    where:{id},
+    data: nota
+  })
 }
 
-export const findAllNotas = async (): Promise <NotaFiscal[]> =>{
-    const result = await banco.query("SELECT * FROM notas_fiscais")
-    return result.rows;
-}
+export const findAllNotas = async(): Promise <NotaFiscal[]> =>{
+  return await prisma.notaFiscal.findMany();
+};
 
-export const findNotaById = async (id:number): Promise <NotaFiscal[]> =>{
-    const result = await banco.query("SELECT * FROM notas_fiscais WHERE id = $1",[id])
-    return result.rows[0] || null; 
-}
+export const findNotaById = async(id:number): Promise <NotaFiscal | null > =>{
+  return await prisma.notaFiscal.findUnique({
+    where:{id}
+  });
+};
 
-export const deleteNotaById = async (id: number): Promise <NotaFiscal[]> => {
-  const result = await banco.query("DELETE FROM notas_fiscais WHERE id = $1",[id])
-  return result.rows[0] || null
-}
+export const deleteNotaById = async(id:number): Promise <NotaFiscal | null > =>{
+  return await prisma.notaFiscal.delete({
+    where:{id}
+  });
+};

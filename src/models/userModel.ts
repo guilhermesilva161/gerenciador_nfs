@@ -4,3 +4,8 @@ export interface CreateUserDTO{
     roleId:number; 
     operId:number | null
 }
+export interface UpdateUserDTO{
+    username:string;
+    password:string;
+    roleId:number; 
+}
