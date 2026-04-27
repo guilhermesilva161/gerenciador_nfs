@@ -179,10 +179,10 @@ Responsável por:
 ## 🛠️ Tecnologias
 
 - [ ] Backend: Node.js e Typescript
-- [ ] Frontend: React
+- [ ] Frontend: React e Vite
 - [ ] Banco de Dados: Postgres
 - [ ] ORM: Prisma
-- [ ] Autenticação:(não definida ainda)
+- [ ] Autenticação: JsonWebToken
 
 ---
 

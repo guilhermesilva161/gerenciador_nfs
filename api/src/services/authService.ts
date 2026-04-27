@@ -19,7 +19,6 @@ export const getAuthenticated = async (data:LoginDTO): Promise <LoginDTO | null 
         response = HttpCode.noContent();
         throw new Error("Senha inválida");
       }
-  // GERAR JWT aqui
   response =  user; 
   return response;
 }
@@ -27,12 +26,13 @@ export const getAuthenticated = async (data:LoginDTO): Promise <LoginDTO | null 
 export const getToken = async (data:LoginDTO): Promise <string>  =>{
     const user = await getAuthenticated(data);
     const tokenData = {
-      name:user?.username
+      name:user?.username,
+      role:user?.roleId
     }
     const tokenKey = process.env.KEY!;
 
     const tokenOptions = {
-      subject: "Usuário autorizado"
+      subject: `Usuário autorizado: ${user?.username.toString()}`,
     }
 
     const token = jwt.sign(tokenData,tokenKey,tokenOptions);
@@ -47,7 +47,8 @@ export const getUser = async (id:number) => {
   if(user){
     const loginDTO: UserDTO = {
       id:user.id,
-      username: user.username,}
+      username: user.username
+    }
       response = HttpCode.ok(loginDTO);
   } else{
     response = HttpCode.badRequest()
