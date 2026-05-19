@@ -23,7 +23,7 @@ export const getAuthenticated = async (data:LoginDTO): Promise <LoginDTO | null 
   return response;
 }
 
-export const getToken = async (data:LoginDTO): Promise <string>  =>{
+export const getToken = async (data:LoginDTO)  =>{
     const user = await getAuthenticated(data);
     const tokenData = {
       name:user?.username,
@@ -37,7 +37,13 @@ export const getToken = async (data:LoginDTO): Promise <string>  =>{
 
     const token = jwt.sign(tokenData,tokenKey,tokenOptions);
 
-    return token
+    return {
+      token,
+      user: {
+        username: user?.username,
+        role: user?.roleId
+      }
+    }
   }
 
 export const getUser = async (id:number) => {

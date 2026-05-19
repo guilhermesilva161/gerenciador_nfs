@@ -9,9 +9,9 @@ import { verifyRole } from "./middleware/roleAuth";
 
 const router = Router();
   //OPERS
-    router.post("/opers", verifyAuth, verifyRole(1),operController.insertOper);
+    router.post("/opers", operController.insertOper);
     router.put("/opers/:id",verifyAuth, verifyRole(1),operController.updateOper)
-    router.get("/opers",verifyAuth, verifyRole(1), operController.getOper);
+    router.get("/opers", operController.getOper);
     router.get("/opers/:id",verifyAuth, verifyRole(1),operController.getOperById);
     router.delete("/opers/:id",verifyAuth, verifyRole(1), operController.deleteOperById);
     
@@ -24,8 +24,8 @@ const router = Router();
     router.delete("/notas/:id",verifyAuth, verifyRole(1), notasController.deleteNotaById);
 
     //USERS
-    router.post("/users",verifyAuth, verifyRole(1), userController.insertUser);
-    router.get("/users",verifyAuth, verifyRole(1), userController.getUser);
+    router.post("/users", userController.insertUser);
+    router.get("/users", userController.getUser);
     router.put("/users/:id", verifyAuth, verifyRole(1),userController.updateUser);
     router.delete("/users/:id",verifyAuth, verifyRole(1), userController.deleteeUser);
 
